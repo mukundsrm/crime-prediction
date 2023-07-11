@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crime in Uttar Pradesh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        section {
+            padding: 20px;
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .chart-container {
+            width: 1000px;
+            height: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crime in Uttar Pradesh</h1>
+    </header>
+    
+    <section>
+        <h2>Crime Statistics</h2>
+        
+        <div class="chart-container" id="uttar-pradesh-graph"></div>
+        <div class="chart-container" id="uttar-pradesh-pie-chart"></div>
+        
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawPieChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Year', 'Murder', 'Robbery', 'Burglary', 'Assault', 'Fraud'],
+                    ['2019', 150, 180, 130, 100, 90],
+                    ['2020', 140, 190, 140, 90, 80],
+                    ['2021', 160, 200, 150, 110, 100],
+                    ['2022', 170, 210, 160, 120, 110]
+                ]);
+
+                var options = {
+                    title: 'Crime Trends (2019-2022)',
+                    curveType: 'function',
+                    legend: { position: 'bottom' },
+                    chartArea: { width: '70%', height: '70%' }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('uttar-pradesh-graph'));
+                chart.draw(data, options);
+            }
+
+            function drawPieChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Crime', 'Percentage'],
+                    ['Murder', 20],
+                    ['Robbery', 12],
+                    ['Burglary', 18],
+                    ['Assault', 15],
+                    ['Fraud', 22]
+                ]);
+
+                var options = {
+                    title: 'Crime Distribution',
+                    pieHole: 0.4,
+                    chartArea: { width: '70%', height: '70%' },
+                    colors: ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1']
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('uttar-pradesh-pie-chart'));
+                chart.draw(data, options);
+            }
+        </script>
+    </section>
+    
+    <footer>
+        <p>&copy; 2023 Crime in Uttar Pradesh. All rights reserved.</p>
+    </footer>
+</body>
+</html>

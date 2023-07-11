@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crime in Kerala</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        section {
+            padding: 20px;
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .chart-container {
+            width: 1000px;
+            height: 700px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crime in Kerala</h1>
+    </header>
+    
+    <section>
+        <h2>Crime Statistics</h2>
+        
+        <div class="chart-container" id="kerala-graph"></div>
+        <div class="chart-container" id="kerala-pie-chart"></div>
+        
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script>
+            google.charts.load('current', { 'packages': ['corechart'] });
+            google.charts.setOnLoadCallback(drawChart);
+            google.charts.setOnLoadCallback(drawPieChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Year', 'Murder', 'Robbery', 'Burglary', 'Assault', 'Fraud'],
+                    ['2019', 80, 100, 70, 50, 40],
+                    ['2020', 70, 90, 60, 40, 30],
+                    ['2021', 90, 110, 80, 60, 50],
+                    ['2022', 100, 120, 90, 70, 60]
+                ]);
+
+                var options = {
+                    title: 'Crime Trends (2019-2022)',
+                    curveType: 'function',
+                    legend: { position: 'bottom' },
+                    chartArea: { width: '70%', height: '70%' }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('kerala-graph'));
+                chart.draw(data, options);
+            }
+
+            function drawPieChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Crime', 'Percentage'],
+                    ['Murder', 12],
+                    ['Robbery', 8],
+                    ['Burglary', 10],
+                    ['Assault', 8],
+                    ['Fraud', 12]
+                ]);
+
+                var options = {
+                    title: 'Crime Distribution',
+                    pieHole: 0.4,
+                    chartArea: { width: '70%', height: '70%' },
+                    colors: ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1']
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('kerala-pie-chart'));
+                chart.draw(data, options);
+            }
+        </script>
+    </section>
+    
+    <footer>
+        <p>&copy; 2023 Crime in Kerala. All rights reserved.</p>
+    </footer>
+</body>
+</html>
